@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DC67CCF6-5538-4363-8C16-95AC3695FE77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCoreImmutabilitySample", "src\EfCoreImmutabilitySample\EfCoreImmutabilitySample.csproj", "{D53E13CF-1C75-411A-AEB3-59848F691483}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D53E13CF-1C75-411A-AEB3-59848F691483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53E13CF-1C75-411A-AEB3-59848F691483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53E13CF-1C75-411A-AEB3-59848F691483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53E13CF-1C75-411A-AEB3-59848F691483}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D53E13CF-1C75-411A-AEB3-59848F691483} = {DC67CCF6-5538-4363-8C16-95AC3695FE77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1A28FCC-855B-4BF6-A1C2-8CAA18855159}
+	EndGlobalSection
+EndGlobal
