@@ -1,4 +1,5 @@
 ﻿using EfCoreImmutabilitySample;
+using EfCoreImmutabilitySample.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,7 +12,7 @@ using var host = Host.CreateDefaultBuilder()
     })
     .ConfigureServices(services =>
     {
-        services.AddDbContext<EfCoreImmutabilityDbContext>(options =>
+        services.AddDbContext<SampleDbContext>(options =>
         {
             options.UseSqlite("Data Source=:memory:");
         });

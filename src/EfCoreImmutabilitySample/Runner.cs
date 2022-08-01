@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using EfCoreImmutabilitySample.Database;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace EfCoreImmutabilitySample;
@@ -6,11 +7,11 @@ namespace EfCoreImmutabilitySample;
 public class Runner : IHostedService
 {
     private readonly ILogger<Runner> _logger;
-    private readonly EfCoreImmutabilityDbContext _context;
+    private readonly SampleDbContext _context;
 
     public Runner(
         ILogger<Runner> logger,
-        EfCoreImmutabilityDbContext context
+        SampleDbContext context
     )
     {
         _logger = logger;
