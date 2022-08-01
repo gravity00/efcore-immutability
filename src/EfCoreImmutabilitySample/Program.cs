@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+using var host = Host.CreateDefaultBuilder()
+    .ConfigureLogging(builder =>
+    {
+        builder.SetMinimumLevel(LogLevel.Trace);
+    })
+    .Build();
+
+await host.RunAsync();
