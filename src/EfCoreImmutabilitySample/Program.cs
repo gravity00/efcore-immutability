@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using var host = Host.CreateDefaultBuilder()
     .ConfigureLogging(builder =>
     {
-        builder.SetMinimumLevel(LogLevel.Trace);
+        builder.SetMinimumLevel(LogLevel.Information);
     })
     .ConfigureServices(services =>
     {
@@ -25,7 +25,6 @@ using var host = Host.CreateDefaultBuilder()
             options.UseSqlite(connectionString)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
-        services.AddScoped(typeof(Repository<>));
         services.AddHostedService<Runner>();
     })
     .Build();
