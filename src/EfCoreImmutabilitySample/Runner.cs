@@ -29,7 +29,7 @@ public class Runner : IHostedService
         await using var tx = await _context.Database.BeginTransactionAsync(ct);
 
         _logger.LogDebug("Adding person");
-        var addedPerson = await _context.CreateAsync(new PersonEntity(
+        var person = await _context.CreateAsync(new PersonEntity(
             ExternalId: Guid.NewGuid(),
             Forename: "Clark",
             Surname: "Kent"
@@ -38,34 +38,20 @@ public class Runner : IHostedService
             MiddleName = "\"Superman\""
         }, ct);
 
-        _logger.LogDebug("Updating person");
-        var updatedPerson = await _context.UpdateAsync(addedPerson with
+        _logger.LogDebug("Updating person's birthdate");
+        person = await _context.UpdateAsync(person with
         {
             Birthdate = new DateOnly(1915, 04, 17)
         }, ct);
 
-        _logger.LogInformation(@"Comparing ADDED with UPDATED instance
-  ReferenceEquals:  {ReferenceEquals}
-  PropertyEquals:   {PropertyEquals}",
-            ReferenceEquals(addedPerson, updatedPerson), // should be false, different instances
-            addedPerson == updatedPerson // should be false, one instance has the Birthdate defined
-        );
+        _logger.LogDebug("Deleting person");
+        await _context.DeleteAsync(person, ct);
 
         _logger.LogDebug("Getting person by id");
-        var readPerson = await _context.ReadByIdAsync<PersonEntity>(addedPerson.Id, ct);
+        person = await _context.ReadByIdAsync<PersonEntity>(person.Id, ct);
 
-        _logger.LogInformation(@"Comparing UPDATED with READ instance
-  ReferenceEquals:  {ReferenceEquals}
-  PropertyEquals:   {PropertyEquals}",
-            ReferenceEquals(updatedPerson, readPerson), // should be false, different instances
-            updatedPerson == readPerson // should be true, both have equal properties
-        );
-
-        if (readPerson is not null)
-        {
-            _logger.LogDebug("Deleting person");
-            await _context.DeleteAsync(readPerson, ct);
-        }
+        if (person is not null)
+            throw new InvalidOperationException("Person should be null");
 
         _logger.LogDebug("Commiting database transaction");
         await tx.CommitAsync(ct);
