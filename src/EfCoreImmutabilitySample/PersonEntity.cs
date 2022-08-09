@@ -5,7 +5,7 @@ public record PersonEntity(
     string Surname
 ) : Entity
 {
-    public string? MiddleName { get; init; }
+    public string? MiddleNames { get; init; }
 
     public DateOnly? Birthdate { get; init; }
 }

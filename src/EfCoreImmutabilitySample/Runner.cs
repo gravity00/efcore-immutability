@@ -34,7 +34,7 @@ public class Runner : IHostedService
             Surname: "Kent"
         )
         {
-            MiddleName = "\"Superman\""
+            MiddleNames = "\"Superman\""
         }, ct);
 
         _logger.LogDebug("Updating person's birthdate");

@@ -29,8 +29,8 @@ public class SampleDbContext : DbContext
             cfg.Property(e => e.Surname)
                 .IsRequired()
                 .HasMaxLength(64);
-            cfg.Property(e => e.MiddleName)
-                .HasMaxLength(128);
+            cfg.Property(e => e.MiddleNames)
+                .HasMaxLength(256);
             cfg.Property(e => e.Birthdate);
         });
     }
