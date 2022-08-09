@@ -1,4 +1,4 @@
-﻿namespace EfCoreImmutabilitySample.Database;
+﻿namespace EfCoreImmutabilitySample;
 
 public record PersonEntity(
     Guid ExternalId,

@@ -1,5 +1,4 @@
 ﻿using EfCoreImmutabilitySample;
-using EfCoreImmutabilitySample.Database;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

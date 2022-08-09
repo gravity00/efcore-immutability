@@ -1,5 +1,4 @@
-﻿using EfCoreImmutabilitySample.Database;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace EfCoreImmutabilitySample;
@@ -45,17 +44,17 @@ public class Runner : IHostedService
             Birthdate = new DateOnly(1915, 04, 17)
         }, ct);
 
-        _logger.LogDebug(@"Comparing ADDED instance with UPDATED instance
+        _logger.LogDebug(@"Comparing ADDED with UPDATED instance
 ReferenceEquals:{ReferenceEquals}
 PropertyEquals: {PropertyEquals}",
             ReferenceEquals(addedPerson, updatedPerson), // should be false, different instances
-            addedPerson == updatedPerson // should be false, one has the Birthdate defined
+            addedPerson == updatedPerson // should be false, one instance has the Birthdate defined
         );
 
-        _logger.LogDebug("Getting brand by id");
+        _logger.LogDebug("Getting person by id");
         var readPerson = await _repository.GetByIdAsync(addedPerson.Id, ct);
 
-        _logger.LogDebug(@"Comparing UPDATED instance with READ instance
+        _logger.LogDebug(@"Comparing UPDATED with READ instance
 ReferenceEquals:{ReferenceEquals}
 PropertyEquals: {PropertyEquals}",
             ReferenceEquals(updatedPerson, readPerson), // should be false, different instances

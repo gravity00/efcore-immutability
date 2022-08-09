@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace EfCoreImmutabilitySample.Database;
+namespace EfCoreImmutabilitySample;
 
 public class SampleDbContext : DbContext
 {
