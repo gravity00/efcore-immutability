@@ -14,72 +14,27 @@ public class SampleDbContext : DbContext
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<CarBrandEntity>(cfg =>
+        builder.Entity<PersonEntity>(cfg =>
         {
-            cfg.ToTable("CarBrands");
+            cfg.ToTable("Persons");
 
             cfg.HasKey(e => e.Id);
             cfg.HasAlternateKey(e => e.ExternalId);
-
-            cfg.HasIndex(e => e.Name).IsUnique();
 
             cfg.Property(e => e.Id)
                 .IsRequired()
                 .ValueGeneratedOnAdd();
             cfg.Property(e => e.ExternalId)
                 .IsRequired();
-            cfg.Property(e => e.Name)
+            cfg.Property(e => e.Forename)
                 .IsRequired()
-                .HasMaxLength(32);
-            cfg.Property(e => e.Description)
-                .HasMaxLength(256);
-        });
-
-        builder.Entity<CarModelEntity>(cfg =>
-        {
-            cfg.ToTable("CarModels");
-
-            cfg.HasKey(e => e.Id);
-            cfg.HasAlternateKey(e => e.ExternalId);
-
-            cfg.HasIndex(e => e.Name).IsUnique();
-
-            cfg.Property(e => e.Id)
+                .HasMaxLength(64);
+            cfg.Property(e => e.Surname)
                 .IsRequired()
-                .ValueGeneratedOnAdd();
-            cfg.Property(e => e.ExternalId)
-                .IsRequired();
-            cfg.HasOne<CarBrandEntity>()
-                .WithMany()
-                .HasForeignKey(e => e.BrandId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
-            cfg.Property(e => e.Name)
-                .IsRequired()
-                .HasMaxLength(32);
-            cfg.Property(e => e.Description)
-                .HasMaxLength(256);
-        });
-
-        builder.Entity<CarEntity>(cfg =>
-        {
-            cfg.ToTable("Cars");
-
-            cfg.HasKey(e => e.Id);
-            cfg.HasAlternateKey(e => e.ExternalId);
-
-            cfg.HasIndex(e => e.Plate).IsUnique();
-
-            cfg.Property(e => e.Id)
-                .IsRequired()
-                .ValueGeneratedOnAdd();
-            cfg.Property(e => e.ExternalId)
-                .IsRequired();
-            cfg.HasOne<CarModelEntity>()
-                .WithMany()
-                .HasForeignKey(e => e.ModelId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasMaxLength(64);
+            cfg.Property(e => e.MiddleName)
+                .HasMaxLength(128);
+            cfg.Property(e => e.Birthdate);
         });
     }
 }
