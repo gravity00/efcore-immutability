@@ -1,7 +1,6 @@
 ﻿namespace EfCoreImmutabilitySample;
 
 public record PersonEntity(
-    Guid ExternalId,
     string Forename,
     string Surname
 ) : Entity

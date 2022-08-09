@@ -19,13 +19,10 @@ public class SampleDbContext : DbContext
             cfg.ToTable("Persons");
 
             cfg.HasKey(e => e.Id);
-            cfg.HasAlternateKey(e => e.ExternalId);
 
             cfg.Property(e => e.Id)
                 .IsRequired()
                 .ValueGeneratedOnAdd();
-            cfg.Property(e => e.ExternalId)
-                .IsRequired();
             cfg.Property(e => e.Forename)
                 .IsRequired()
                 .HasMaxLength(64);

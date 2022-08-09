@@ -30,7 +30,6 @@ public class Runner : IHostedService
 
         _logger.LogDebug("Adding person");
         var person = await _context.CreateAsync(new PersonEntity(
-            ExternalId: Guid.NewGuid(),
             Forename: "Clark",
             Surname: "Kent"
         )
