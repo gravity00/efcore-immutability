@@ -25,7 +25,7 @@ using var host = Host.CreateDefaultBuilder()
             options.UseSqlite(connectionString)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
-        services.AddHostedService<Runner>();
+        services.AddHostedService<ProgramHost>();
     })
     .Build();
 

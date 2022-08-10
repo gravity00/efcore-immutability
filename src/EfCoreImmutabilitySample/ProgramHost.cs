@@ -3,13 +3,13 @@ using Microsoft.Extensions.Logging;
 
 namespace EfCoreImmutabilitySample;
 
-public class Runner : IHostedService
+public class ProgramHost : IHostedService
 {
-    private readonly ILogger<Runner> _logger;
+    private readonly ILogger<ProgramHost> _logger;
     private readonly SampleDbContext _context;
 
-    public Runner(
-        ILogger<Runner> logger,
+    public ProgramHost(
+        ILogger<ProgramHost> logger,
         SampleDbContext context
     )
     {
@@ -30,17 +30,15 @@ public class Runner : IHostedService
 
         _logger.LogDebug("Adding person");
         var person = await _context.CreateAsync(new PersonEntity(
-            Forename: "Clark",
-            Surname: "Kent"
-        )
-        {
-            MiddleNames = "\"Superman\""
-        }, ct);
+            Forename: "Bruce",
+            Surname: "Wayne"
+        ), ct);
 
         _logger.LogDebug("Updating person's birthdate");
         person = await _context.UpdateAsync(person with
         {
-            Birthdate = new DateOnly(1915, 04, 17)
+            MiddleNames = "Thomas",
+            Birthdate = new DateOnly(1972, 02, 19)
         }, ct);
 
         _logger.LogDebug("Deleting person");
