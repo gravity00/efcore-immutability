@@ -17,8 +17,6 @@ public class ProgramHost : IHostedService
         _context = context;
     }
 
-    public Task StopAsync(CancellationToken ct) => Task.CompletedTask;
-
     public async Task StartAsync(CancellationToken ct)
     {
         _logger.LogDebug("Setting database to a clean state");
@@ -53,4 +51,6 @@ public class ProgramHost : IHostedService
         _logger.LogDebug("Commiting database transaction");
         await tx.CommitAsync(ct);
     }
+
+    public Task StopAsync(CancellationToken ct) => Task.CompletedTask;
 }
