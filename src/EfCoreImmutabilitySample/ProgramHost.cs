@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace EfCoreImmutabilitySample;
@@ -43,7 +44,7 @@ public class ProgramHost : IHostedService
         await _context.DeleteAsync(person, ct);
 
         _logger.LogDebug("Getting person by id");
-        person = await _context.ReadByIdAsync<PersonEntity>(person.Id, ct);
+        person = await _context.Set<PersonEntity>().SingleOrDefaultAsync(e => e.Id == person.Id, ct);
 
         if (person is not null)
             throw new InvalidOperationException("Person should be null");

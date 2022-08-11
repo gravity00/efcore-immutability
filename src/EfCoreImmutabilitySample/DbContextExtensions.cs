@@ -4,14 +4,6 @@ namespace EfCoreImmutabilitySample;
 
 public static class DbContextExtensions
 {
-    public static async Task<TEntity?> ReadByIdAsync<TEntity>(this DbContext context, long id, CancellationToken ct)
-        where TEntity : Entity
-    {
-        if (context == null) throw new ArgumentNullException(nameof(context));
-
-        return await context.Set<TEntity>().SingleOrDefaultAsync(e => e.Id == id, ct);
-    }
-
     public static async Task<TEntity> CreateAsync<TEntity>(
         this DbContext context,
         TEntity entity,
@@ -42,8 +34,12 @@ public static class DbContextExtensions
         ct
     );
 
-    private static async Task<TEntity> SaveEntityStateAsync<TEntity>(this DbContext context, TEntity entity, EntityState state, CancellationToken ct)
-        where TEntity : Entity
+    private static async Task<TEntity> SaveEntityStateAsync<TEntity>(
+        this DbContext context,
+        TEntity entity,
+        EntityState state,
+        CancellationToken ct
+    ) where TEntity : Entity
     {
         if (context == null) throw new ArgumentNullException(nameof(context));
         if (entity == null) throw new ArgumentNullException(nameof(entity));
